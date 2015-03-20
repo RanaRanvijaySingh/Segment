@@ -1,0 +1,19 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res/com.segment"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res/com.example.segmentdemo"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.segmentdemo.MainActivity" >
+
+    <com.segment.Segment
+        android:id="@+id/segment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        app:count="4"
+        app:segmentColor="@color/blue"
+        app:textColor="@color/white"
+        app:text="Android,iphone,sencha,phonegap" />
+
+</LinearLayout>

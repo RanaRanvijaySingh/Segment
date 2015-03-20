@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/radioGroup"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="5dp"
+    android:background="@drawable/linear_layout_filter_background"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:padding="1dp" >
+
+    <RadioButton
+        android:id="@+id/radioFirst"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/rbtn_selector"
+        android:button="@null"
+        android:checked="true"
+        android:gravity="center"
+        android:padding="5dp"
+        android:singleLine="true"
+        android:textColor="@drawable/rbtn_textcolor_selector" />
+
+    <RadioButton
+        android:id="@+id/radioSecond"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/rbtn_selector"
+        android:button="@null"
+        android:gravity="center"
+        android:padding="5dp"
+        android:singleLine="true"
+        android:textColor="@drawable/rbtn_textcolor_selector" />
+
+</RadioGroup>
