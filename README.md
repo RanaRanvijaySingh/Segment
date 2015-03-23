@@ -1,21 +1,22 @@
 # Segment - Android
 
 ##Introduction
-Segment is a library similar to Iphone UI component - Segment. 
-No need to customize layout or button to make it look the UI Segment.
-No need to create separate drawable file or selector for segment buttons.
-This library will do it for you.
+Segment is a library similar to Iphone UI component - Segment.  
+No need to customize layout or button.  
+No need to create separate drawable file or selectors.  
+This library will do it for you.  
 
-By providing 4 simple attributes in XML file itself.
+###Features
+Library provide 4 simple attributes in XML file :
 
-1. "count" : Number of segment you want.
-2. "segmentColor" : One theme color.
-3. "textColor" : Second theme color or text color that will appear in clicked box.
-4. "text" : Texts that you want to give in the segment buttons.</br>
-          **NOTE** :  Text will saperated by comma ",".</br>
-                      Texts will be of same count as of count value.</br>
-                      eg. 
-    ```sh 
+1. **count** : Number of segment buttons you want.
+2. **segmentColor** : Theme color for the segment.
+3. **textColor** : Second theme color or text color that will appear in clicked box.
+4. **text** : Texts that you want to give in the segment buttons.  
+         - Text will saperated by comma ",".  
+         - Texts will be of same count as of count value.  
+         eg. 
+``` 
 app:count="3"
 app:text="Android,IPhone,Sencha"
 ```
