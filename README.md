@@ -39,6 +39,7 @@ In your xml file you need to add `xmlns:custom="http://schemas.android.com/apk/r
         app:count="4"
         app:segmentColor="@color/blue"
         app:text="Android,iphone,sencha,me"
+        app:textSize="12sp"
         app:textColor="@color/white" />
 ```
 Now to get the call back in your java code, you have `OnClickSegmentButton` interface.  
