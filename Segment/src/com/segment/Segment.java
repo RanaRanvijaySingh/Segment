@@ -10,6 +10,7 @@ import android.graphics.drawable.DrawableContainer.DrawableContainerState;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ public class Segment extends RadioGroup implements OnCheckedChangeListener{
 	private final String TAG = "Segment";
 	private String count = "";
 	private String text = "";
+	private String textSize = "";
 	private String textColor;
 	private String segmentColor;
 	private View view;
@@ -58,11 +60,12 @@ public class Segment extends RadioGroup implements OnCheckedChangeListener{
 			text = typedArray.getString(R.styleable.Segment_text);
 			textColor = typedArray.getString(R.styleable.Segment_textColor);
 			segmentColor = typedArray.getString(R.styleable.Segment_segmentColor);
+			textSize = typedArray.getString(R.styleable.Segment_textSize);
 		}finally {
 			typedArray.recycle();
 		}
 		setButtonCount(radioGroup,count);
-		setButtonText(radioGroup,text);
+		setButtonText(radioGroup,text,textSize);
 		setSegmentThemeColor(segmentColor);
 		setTextThemeColor(textColor,segmentColor);
 		radioGroup.setOnCheckedChangeListener(this);
@@ -108,11 +111,14 @@ public class Segment extends RadioGroup implements OnCheckedChangeListener{
 	 * Function to set the component values based on the attribute values.
 	 * @param radioGroup 
 	 * @param text String
+	 * @param textSize 
 	 */
-	private void setButtonText(RadioGroup radioGroup, String text) {
+	private void setButtonText(RadioGroup radioGroup, String text, String textSize) {
 		try {
 			String []texts = text.split(",");
 			int componentCount = radioGroup.getChildCount();
+			textSize = textSize.substring(0, textSize.length()-2);
+			int textSizeValue = Integer.parseInt(textSize);
 			if (componentCount > 0) {
 				for (int i = 0; i < componentCount; i++) {
 					RadioButton radioButton = (RadioButton)radioGroup.getChildAt(i);
@@ -120,7 +126,8 @@ public class Segment extends RadioGroup implements OnCheckedChangeListener{
 						radioButton.setText(texts[i]);	
 					}else {
 						radioButton.setText(i+1);
-					}						
+					}					
+					radioButton.setTextSize(dpToPx(textSizeValue));
 				}
 			}
 		} catch (Exception e) {
@@ -128,7 +135,17 @@ public class Segment extends RadioGroup implements OnCheckedChangeListener{
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * Function to convert dp to px.
+	 * @param dp int
+	 * @return px 
+	 */
+	public int dpToPx(int dp) {
+	    DisplayMetrics displayMetrics = getContext().getResources().getDisplayMetrics();
+	    int px = Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));       
+	    return px;
+	}
 	
 	/**
 	 * Function to set segment color

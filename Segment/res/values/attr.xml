@@ -4,6 +4,7 @@
     <declare-styleable name="Segment">
         <attr name="count" format="string" />
         <attr name="text" format="string" />
+        <attr name="textSize" format="string" />
         <attr name="textColor" format="string" />
         <attr name="segmentColor" format="string" />
     </declare-styleable>
