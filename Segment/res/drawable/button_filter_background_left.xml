@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <corners android:bottomRightRadius="5dp" android:topRightRadius="5dp" />
-
-    <padding android:bottom="4dp" android:top="4dp" />
-
-    <solid android:color="@android:color/white" />
-
-    <stroke android:color="@color/blue" />
-
+    <item android:state_checked="true" android:id="@+id/buttonSelected">
+        <shape>
+            <corners android:bottomLeftRadius="5dp" android:topLeftRadius="5dp" />
+            <padding android:bottom="4dp" android:top="4dp" />
+            <solid android:color="@color/blue" />
+            <stroke  android:color="@color/blue" />
+        </shape>
+    </item>
+    <item android:state_checked="false" android:id="@+id/buttonNotSelected">
+        <shape android:shape="rectangle">
+            <corners android:bottomLeftRadius="5dp" android:topLeftRadius="5dp" />
+            <padding android:bottom="4dp" android:top="4dp" />
+            <solid android:color="@color/white" />
+            <stroke android:color="@color/blue" />
+        </shape>
+    </item>
 </selector>

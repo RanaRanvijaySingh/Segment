@@ -94,7 +94,11 @@ public class Segment extends RadioGroup implements OnCheckedChangeListener{
 				button.setGravity(Gravity.CENTER);
 				button.setSingleLine(true);
 				button.setPadding(20,5,20,5);
-				button.setBackgroundResource(R.drawable.rbtn_selector);
+				if (i==(buttonCount-3)) {
+					button.setBackgroundResource(R.drawable.button_filter_background_right);
+				}else{
+					button.setBackgroundResource(R.drawable.button_filter_background);
+				}
 				button.setButtonDrawable(android.R.color.transparent);
 				LayoutParams layoutParams = new LayoutParams(0,LayoutParams.MATCH_PARENT,1.0f);
 				button.setLayoutParams(layoutParams);
