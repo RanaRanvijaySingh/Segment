@@ -12,7 +12,8 @@ Library provide 4 simple attributes in XML file :
 1. **count**               : Number of segment buttons you want.
 2. **segmentColor**        : Theme color for the segment.
 3. **textColor**           : Second theme color or text color that will appear in clicked box.
-4. **text**                : Texts that you want to give in the segment buttons.  
+4. **textSize**            : For giving text size.
+5. **text**                : Texts that you want to give in the segment buttons.  
                                     - Text will saperated by comma ",".  
                                     - Texts will be of same count as of count value.  
                                      eg. 
@@ -38,6 +39,7 @@ In your xml file you need to add `xmlns:custom="http://schemas.android.com/apk/r
         app:count="4"
         app:segmentColor="@color/blue"
         app:text="Android,iphone,sencha,me"
+        app:textSize="12sp"
         app:textColor="@color/white" />
 ```
 Now to get the call back in your java code, you have `OnClickSegmentButton` interface.  
@@ -71,3 +73,10 @@ public class MainActivity extends Activity implements OnClickSegmentButton{
 
 ### Version
 1.0
+
+###Screenshots
+
+![](https://cloud.githubusercontent.com/assets/4836122/6802305/45de62de-d255-11e4-9a17-1f01d8f89708.png)
+
+
+![](https://cloud.githubusercontent.com/assets/4836122/6802306/45e69fa8-d255-11e4-8ede-4f40cb674409.png)
