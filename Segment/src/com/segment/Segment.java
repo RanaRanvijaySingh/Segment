@@ -239,6 +239,15 @@ public class Segment extends RadioGroup implements OnCheckedChangeListener{
 	public void setText(String text){
 		this.text = text;
 	}
+	
+	
+	public String getTextSize(){
+		return textSize;
+	}
+
+	public void setTextSize(String textSize){
+		this.textSize = textSize;
+	}
 
 	public interface OnClickSegmentButton{
 		public void onButtonSelected(View view,int position);
