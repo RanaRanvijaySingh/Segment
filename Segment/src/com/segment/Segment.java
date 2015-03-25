@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.DrawableContainer.DrawableContainerState;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -21,12 +22,14 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 
 public class Segment extends RadioGroup implements OnCheckedChangeListener{
 
+	private static final int SEGMENT_BORDER_WIDTH = 1;
 	private final String TAG = "Segment";
+	private final String BUTTON_TAG = "radioButton";
 	private String count = "";
 	private String text = "";
 	private String textSize = "";
-	private String textColor;
-	private String segmentColor;
+	private String textColor = "";
+	private String segmentColor = "";
 	private View view;
 	private RadioGroup radioGroup;
 	private static OnClickSegmentButton mOnClickSegmentButton;
@@ -67,7 +70,7 @@ public class Segment extends RadioGroup implements OnCheckedChangeListener{
 		setButtonCount(radioGroup,count);
 		setButtonText(radioGroup,text,textSize);
 		setSegmentThemeColor(segmentColor);
-		setTextThemeColor(textColor,segmentColor);
+		setTextThemeColor(radioGroup,textColor,segmentColor);
 		radioGroup.setOnCheckedChangeListener(this);
 	}
 
@@ -90,7 +93,7 @@ public class Segment extends RadioGroup implements OnCheckedChangeListener{
 				    ColorStateList csl = ColorStateList.createFromXml(getResources(), xrp);  
 				    button.setTextColor(csl);
 				} catch (Exception e) {  } 
-				button.setTag("radioButton");
+				button.setTag(BUTTON_TAG);
 				button.setGravity(Gravity.CENTER);
 				button.setSingleLine(true);
 				button.setPadding(20,5,20,5);
@@ -126,7 +129,7 @@ public class Segment extends RadioGroup implements OnCheckedChangeListener{
 			if (componentCount > 0) {
 				for (int i = 0; i < componentCount; i++) {
 					RadioButton radioButton = (RadioButton)radioGroup.getChildAt(i);
-					if (isValidString(texts[i])) {
+					if (!TextUtils.isEmpty(texts[i])) {
 						radioButton.setText(texts[i]);	
 					}else {
 						radioButton.setText(i+1);
@@ -164,7 +167,7 @@ public class Segment extends RadioGroup implements OnCheckedChangeListener{
 	 * Function to set segment color
 	 * @param segmentColor color reference id
 	 */
-	private void setTextThemeColor(String textColor,String segmentColor) {
+	private void setTextThemeColor(RadioGroup radioGroup,String textColor,String segmentColor) {
 		for (int i = 0; i < radioGroup.getChildCount(); i++) {
 			RadioButton button = (RadioButton)radioGroup.getChildAt(i);
 			StateListDrawable drawable = (StateListDrawable)button.getBackground();
@@ -172,36 +175,22 @@ public class Segment extends RadioGroup implements OnCheckedChangeListener{
 			Drawable[] drawableItems = dcs.getChildren();
 			GradientDrawable gradientDrawableChecked = (GradientDrawable)drawableItems[0];
 			GradientDrawable gradientDrawableUnChecked = (GradientDrawable)drawableItems[1];
+			gradientDrawableUnChecked.setStroke(SEGMENT_BORDER_WIDTH, Color.parseColor(segmentColor));
 			if (button.isChecked()) {
 				button.setTextColor(Color.parseColor(textColor));
 				gradientDrawableChecked.setColor(Color.parseColor(segmentColor));
 				gradientDrawableUnChecked.setColor(Color.parseColor(textColor));
-				gradientDrawableUnChecked.setStroke(1, Color.parseColor(segmentColor));
 			}else{
 				button.setTextColor(Color.parseColor(segmentColor));
 				gradientDrawableChecked.setColor(Color.parseColor(textColor));
 				gradientDrawableUnChecked.setColor(Color.parseColor(textColor));
-				gradientDrawableUnChecked.setStroke(1, Color.parseColor(segmentColor));
-				button.setTextColor(Color.parseColor(segmentColor));
 			}
 		}
 	}
 
-	/**
-	 * Function to check if the given is string is valid or not.
-	 * @param string String
-	 * @return true or false based string validation
-	 */
-	private boolean isValidString(String string) {
-		return string != null 
-				&& string != "" 
-				&& !string.equalsIgnoreCase("")
-				&& !string.equalsIgnoreCase("null");
-	}
-
 	@Override
-	public void onCheckedChanged(RadioGroup group, int checkedId) {
-		setTextThemeColor(textColor, segmentColor);
+	public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+		setTextThemeColor(radioGroup,textColor, segmentColor);
 		int radioButtonID = radioGroup.getCheckedRadioButtonId();
 		View radioButton = radioGroup.findViewById(radioButtonID);
 		int index = radioGroup.indexOfChild(radioButton);
