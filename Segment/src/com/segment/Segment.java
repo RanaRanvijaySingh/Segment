@@ -176,14 +176,13 @@ public class Segment extends RadioGroup implements OnCheckedChangeListener{
 			GradientDrawable gradientDrawableChecked = (GradientDrawable)drawableItems[0];
 			GradientDrawable gradientDrawableUnChecked = (GradientDrawable)drawableItems[1];
 			gradientDrawableUnChecked.setStroke(SEGMENT_BORDER_WIDTH, Color.parseColor(segmentColor));
+			gradientDrawableUnChecked.setColor(Color.parseColor(textColor));
 			if (button.isChecked()) {
 				button.setTextColor(Color.parseColor(textColor));
 				gradientDrawableChecked.setColor(Color.parseColor(segmentColor));
-				gradientDrawableUnChecked.setColor(Color.parseColor(textColor));
 			}else{
 				button.setTextColor(Color.parseColor(segmentColor));
 				gradientDrawableChecked.setColor(Color.parseColor(textColor));
-				gradientDrawableUnChecked.setColor(Color.parseColor(textColor));
 			}
 		}
 	}
